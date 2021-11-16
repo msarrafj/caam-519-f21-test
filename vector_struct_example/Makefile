@@ -6,8 +6,7 @@ my_vector_struct.o:my_vector_struct.c
 	gcc -c my_vector_struct.c 
 .PHONY:clean
 
-#linux rm -rf *.o main
 clean:
 	@echo "=======clean project========="
-	del  *.o 
+	rm -rf *.o main 
 	@echo "=======clean completed========="
