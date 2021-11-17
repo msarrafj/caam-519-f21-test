@@ -15,5 +15,30 @@ int main(){
     vector_set(ptr_v,i,v_array[i]);
   }
   // continue ...
+  
+  // lets make w
+  my_vector w = vector_constructor(len);
+  my_vector* ptr_w = &w;
+  int w_array[4] = {1,-1,1,-2};
+  for (int i = 0; i < sizeof(w_array)/sizeof(int) ; i++) {
+    vector_set(ptr_w,i,w_array[i]);
+  }
+  
+  // v - w
+  my_vector neg_w = vector_scalar_multiplication(ptr_w, -1.0);
+  my_vector* ptr_neg_w = &neg_w;
+  my_vector u = vector_addition(ptr_v, ptr_neg_w);
+  printf("v - w = {");
+  for (int i = 0; i < len-1; i++) {
+    printf("%f, ", u.v[i]);
+  }
+  printf("%f}\n", u.v[len-1]);
+  vector_destructor(&u);
+  vector_destructor(ptr_neg_w);
 
+  // dot(v,w)
+  double dot = vector_dot_product(ptr_v, ptr_w);
+  printf("v dotted with w is %f\n", dot);
+  vector_destructor(ptr_v);
+  vector_destructor(ptr_w);
 }

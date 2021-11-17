@@ -86,6 +86,8 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
     
     // for loop for scalar multiplication
     // continue ... [use vector_set() here]
+    for (int i = 0; i < w.length ; i++) {
+	vector_set(ptr_w, i, num * vector_get(v, i));
     }
 
   }
@@ -99,4 +101,34 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
 // continue ...
 // implement vector_addition and vector_dot_product
 
+// vector addition
+my_vector vector_addition(my_vector* v, my_vector* u){
+  // arbitrarily make w the same size as v
+  my_vector w = vector_constructor(v->length);
+  if (v->status == 0 && u->status == 0 && v->length == u->length) {
+    my_vector* ptr_w = &w;
+    for (int i = 0; i < w.length ; i++) {
+      vector_set(ptr_w, i, vector_get(v, i) + vector_get(u, i));
+    }
+  }
+  else {
+    printf("The vectors are not of the same length or at least one of the vectors is invalid. Returning a vector of same length as the first argument.\n");
+  }
 
+  return w;
+}
+
+// vector dot product
+double vector_dot_product(my_vector* v, my_vector* u){
+  double sum = 0.0;
+  if (v->status == 0 && u->status == 0 && v->length == u->length) {
+    for (int i = 0; i < u->length ; i++) {
+      sum += vector_get(v, i) * vector_get(u, i);
+    }
+  }
+  else {
+    printf("The vectors are not of the same length or at least one of the vectors is invalid. Returning a vector of same length as the first argument.\n");
+  }
+
+  return sum;
+}
