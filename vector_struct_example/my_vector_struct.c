@@ -112,7 +112,7 @@ my_vector vector_addition(my_vector* v, my_vector* u){
     }
   }
   else {
-    printf("The vectors are not of the same length or at least one of the vectors is invalid. Returning a vector of same length as the first argument.\n");
+    printf("The vectors are not of the same length or at least one of the vectors is invalid. Arbitrarily returning a vector of same length as the first argument.\n");
   }
 
   return w;
@@ -127,7 +127,7 @@ double vector_dot_product(my_vector* v, my_vector* u){
     }
   }
   else {
-    printf("The vectors are not of the same length or at least one of the vectors is invalid. Returning a vector of same length as the first argument.\n");
+    printf("The vectors are not of the same length or at least one of the vectors is invalid. Arbitrarily returning 0 as the dot product.\n");
   }
 
   return sum;
