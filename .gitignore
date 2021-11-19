@@ -1,5 +1,6 @@
-personalphoto.png
-*.jpg
-personal/
-tags
-kj
+*
+!*.h
+!*.c
+!*.txt
+!Makefile
+

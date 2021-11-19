@@ -86,17 +86,53 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
     
     // for loop for scalar multiplication
     // continue ... [use vector_set() here]
+    
+    for(int i =0; i< w.length;i++) {
+    	vector_set(ptr_w, i, vector_get(v,i)*num);
     }
-
   }
-  else{
+      else{
     printf("vector_scalar_multiplication: this is an invalid vector we have inputted");
   }
+    return w;
 
-  return w;
-}
+  }
+
 
 // continue ...
 // implement vector_addition and vector_dot_product
+
+my_vector vector_addition(my_vector* v, my_vector* u){
+  my_vector w = vector_constructor(v->length);
+  if (v->status != 0 || u->status != 0)
+    printf("vector_addition: the vector are invalid or not ready");
+  else if (v->length != u->length)
+    printf("vector_addition: the vectors` length are not matched");
+  else
+  {
+    my_vector *ptr_w = &w;
+    for (int i = 0; i < w.length; i++) {
+    	vector_set(ptr_w, i, vector_get(v, i) + vector_get(u, i));
+    }
+  }
+  return w;
+}
+
+double vector_dot_product(my_vector* v, my_vector* u)
+{
+  double product = 0.0;
+  if (v->status != 0 || u->status != 0)
+    printf("vector_addition: the vector are invalid or not ready");
+  else if (v->length != u->length)
+    printf("vector_addition: the vectors` length are not matched");
+  else
+  {
+    for (int i = 0; i < v->length; i++)
+      product += vector_get(v, i) * vector_get(u, i);
+  }
+  return product;
+}
+
+
 
 
