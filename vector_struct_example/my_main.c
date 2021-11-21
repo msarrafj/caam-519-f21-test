@@ -32,4 +32,11 @@ int main(){
   // v dot w
   double z2 = vector_dot_product(&v, &w);
   printf("<v,w> = %f\n", z2);
+
+  // Unnecessary to clean up the heap at the end of the program,
+  // but it makes valgrind happy.
+  vector_destructor(&v);
+  vector_destructor(&w);
+  vector_destructor(&minus_w);
+  vector_destructor(&z1);
 }
