@@ -73,8 +73,54 @@ double vector_get(my_vector* vec, const int index){
 }
 
 
+// adding two vectors
+my_vector vector_addition(my_vector* v, my_vector* u)
+{
+  // initialize a new vector called w
+  my_vector w = vector_constructor(v->length);
+
+  // check if vectors can be added
+  if (v->status == 0 && u->status == 0 && u->length == v->length){
+
+    // get the address of w for the pointer
+    my_vector* ptr_w = &w;
+
+    // for loop for vector addition
+    for (int i=0; i < ptr_w->length; ++i){
+      vector_set(ptr_w, i, vector_get(v, i) + vector_get(u, i));
+    }
+  }
+  else{
+    printf("vector_addition: these are invalid vector inputs");
+  }
+
+  return w;
+}
+
+// taking vector dot product
+double vector_dot_product(my_vector* v, my_vector* u)
+{
+  // initialize double called d
+  double d;
+
+  // check if vectors can be multiplied
+  if (v->status == 0 && u->status == 0 && u->length == v->length){
+
+    // for loop for vector dot product
+    for (int i=0; i < v->length; ++i){
+      d = d + vector_get(v, i) * vector_get(u, i);
+    }
+  }
+  else{
+    printf("vector_dot_product: these are invalid vector inputs");
+  }
+
+  return d;
+}
+
 // vector scalar multiplication
-my_vector vector_scalar_multiplication(my_vector* v, double num){
+my_vector vector_scalar_multiplication(my_vector* v, double num)
+{
   // initialized a new vector called w
   my_vector w = vector_constructor(v->length);
 
@@ -85,18 +131,16 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
     my_vector* ptr_w = &w;
     
     // for loop for scalar multiplication
-    // continue ... [use vector_set() here]
+    for (int i=0; i < ptr_w->length; ++i){
+      vector_set(ptr_w, i, vector_get(v, i) * num);
     }
-
   }
   else{
-    printf("vector_scalar_multiplication: this is an invalid vector we have inputted");
+    printf("vector_scalar_multiplication: this is an invalid vector input");
   }
 
   return w;
 }
 
-// continue ...
-// implement vector_addition and vector_dot_product
 
 
