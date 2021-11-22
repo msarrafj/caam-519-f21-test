@@ -84,10 +84,9 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
     //get the address of w for the pointer
     my_vector* ptr_w = &w;
     
-    // for loop for scalar multiplication
-    // continue ... [use vector_set() here]
+    for (int i = 0; i < (v->length); i++){
+    	vector_set(ptr_w,i,num*vector_get(v,i));
     }
-
   }
   else{
     printf("vector_scalar_multiplication: this is an invalid vector we have inputted");
@@ -95,8 +94,46 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
 
   return w;
 }
+double vector_dot_product(my_vector* v, my_vector* u){
+	double ans = 0;
+	// we check if the vectors have good status and that they have the same length
+	if (v->status == 0 && u->status == 0){
+		if (v->length == u->length){
+			//then we do elementwise multiplication and sum the elements
+			for (int i =0; i < v->length; i++){
+				ans += vector_get(v,i)*vector_get(u,i);
+			}
+		// otherwise we print error message depending on what wasn't satisfied
+		}else{
+			printf("vector_dot_product: vectors are different lengths\n");
+  		}
+		
+	}else {
+    		printf("vector_dot_product: this vector cannot be used now\n");
+  }
+	return ans;
+}
 
+my_vector vector_addition(my_vector* v, my_vector* u){
+	// we make sure both vectors have good status, and that they are the same length
+	my_vector w = vector_constructor(v->length);
+	if (v->status == 0 && u->status == 0){
+		if (v->length == u->length){
+			// if the conditions are satisfied we add the vectors elementwise and put it into our answer vector w
+			my_vector* ptr_w = &w;
+			for (int i =0; i < v->length; i++){
+				vector_set(ptr_w,i,vector_get(v,i)+vector_get(u,i));
+			}
+		// otherwise we print an error message depending on what wasn't satisfied
+		}else{
+			printf("vector_dot_product: vectors are different lengths\n");
+  		}
+		
+	}else {
+    		printf("vector_dot_product: this vector cannot be used now\n");
+  }
+	return w;
+}
 // continue ...
 // implement vector_addition and vector_dot_product
-
 
