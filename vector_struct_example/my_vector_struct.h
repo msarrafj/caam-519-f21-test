@@ -43,5 +43,6 @@ double vector_dot_product(my_vector* v, my_vector* u);
 // vector_scalar_multiplication
 my_vector vector_scalar_multiplication(my_vector* v, double num);
 
+void vector_pretty_print(my_vector* v);
 #endif
 // Comment
