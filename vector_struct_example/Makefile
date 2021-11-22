@@ -24,5 +24,3 @@ hw5: $(patsubst %,$(OBJ_DIR)/%,$(OBJ))
 clean:
 	rm -f .obj/*.o
 	rm -f hw5
-
-	
