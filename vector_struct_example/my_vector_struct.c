@@ -86,6 +86,12 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
     
     // for loop for scalar multiplication
     // continue ... [use vector_set() here]
+    for (int i = 0; i < v->length; i++) {
+	    //calculate the scalar multiple of each element
+	    double mult = (v->v[i]) * (num);
+	    vector_set(ptr_w, i, mult);
+	   //update pointer 
+	   //v++; 
     }
 
   }
@@ -99,4 +105,68 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
 // continue ...
 // implement vector_addition and vector_dot_product
 
+// vector_addition
+my_vector vector_addition(my_vector* v, my_vector* w){
+	//check that vectors v and w are usable
+	if (v->status == 0 && w-> status == 0)
+	{
+		//check that vector lengths match
+		if (v->length == w->length)
+		{
+			//add vectors
+
+			//initialize resultant vector u
+			my_vector u = vector_constructor(v->length);
+
+			//get address for u
+			my_vector* ptr_u = &u;
+
+			//for loop for vector addition
+			for (int i = 0; i < v->length; i++) {
+				//define variable sum which is the sum of each element
+				int sum = (v->v[i]) + (w->v[i]);
+				vector_set(ptr_u, i, sum);
+			}
+			
+		}
+		
+		else{
+			printf("lengths don't match");
+		}
+	}
+	else{
+		printf("vectors aren't usable");
+	}
+
+}
+
+
+//vector_dot_product
+double vector_dot_product(my_vector* v, my_vector* w){
+	//check that vectors are usable
+	if (v->status == 0 && w->status == 0)
+	{
+		//check that vector length is the same
+		if (v->length == w->length)
+		{
+			//vector dot product
+
+			//initialize result variable
+			double result = 0.0;
+
+			//for loop for dot product
+			for (int i = 0; i < v->length; i++) {
+				result += (vector_get(v, i)) * (vector_get(w, i));
+				
+			}
+			return result;
+		}
+		else{
+			printf("lengths don't match");
+		}
+	}
+	else{
+		printf("vectors aren't usable");
+	}
+}
 
