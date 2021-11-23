@@ -86,6 +86,8 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
     
     // for loop for scalar multiplication
     // continue ... [use vector_set() here]
+    for (int i = 0; i < w.length ; i++) {
+      vector_set(ptr_w, i, num * vector_get(v, i));
     }
 
   }
@@ -99,4 +101,33 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
 // continue ...
 // implement vector_addition and vector_dot_product
 
+// vector_addtion
+my_vector vector_addition(my_vector *v, my_vector *u){
+  // set w to store the value of v + u
+  my_vector w = vector_constructor(v->length);
+ if (v->status == 0 && u->status == 0 && v->length == u->length) {
+    my_vector* ptr_w = &w;
+    for (int i = 0; i < w.length ; i++) {
+      vector_set(ptr_w, i, vector_get(v, i) + vector_get(u, i));
+    }
+  }
+  else {
+    printf("One of conditions that is not obeyed: 1: Both status of input ventors should be 0. (which means vectors can be used) 2: Two input vectors should have same size in order to addtion");
+  }
+  return w;
+}
 
+// vector_dot_product
+double vector_dot_product(my_vector *v, my_vector *u){
+  double dot_product = 0;
+  if (v->status == 0 && u->status == 0 && v->length == u->length) {
+    for (int i = 0; i < u->length ; i++) {
+      dot_product += vector_get(v, i) * vector_get(u, i);
+    }
+  }
+  else {
+    printf("One of conditions that is not obeyed: 1: Both status of input ventors should be 0. (which means vectors can be used) 2: Two input vectors should have same size in order to addtion");
+  }
+
+  return dot_product;
+}
