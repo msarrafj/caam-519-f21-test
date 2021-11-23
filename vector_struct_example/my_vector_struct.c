@@ -85,7 +85,8 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
     my_vector* ptr_w = &w;
     
     // for loop for scalar multiplication
-    // continue ... [use vector_set() here]
+    for (int i=0; i < v->length ;++i){
+      vector_set(ptr_w, i, vector_get(v, i)*num);
     }
 
   }
@@ -98,5 +99,64 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
 
 // continue ...
 // implement vector_addition and vector_dot_product
+
+// vector addition
+my_vector vector_addition(my_vector* v, my_vector* u){
+  // initialized a new vector called w
+  my_vector w = vector_constructor(v->length);
+
+  // here the input is the scalar num and we have checked that v is a usable vector
+  if (v->status == 0 && u->status == 0){
+
+    // check that u and v are the same length
+    if (v->length == u->length){
+      //get the address of w for the pointer
+      my_vector* ptr_w = &w;
+    
+      // for loop for addition
+      for (int i=0; i < v->length ;++i){
+        vector_set(ptr_w, i, vector_get(v, i) + vector_get(u, i));
+      }
+    }
+    else{
+      printf("vector_addition: vectors are not the same length");
+    }
+
+  }
+  else{
+    printf("vector_addition: one of the input vectors is invalid");
+  }
+
+  return w;
+}
+
+
+// vector_dot_product
+double vector_dot_product(my_vector* v, my_vector* u){
+  // initialize return value
+  double count = 0.0;
+
+  // here the input is the scalar num and we have checked that v is a usable vector
+  if (v->status == 0 && u->status == 0){
+
+    // check that u and v are the same length
+    if (v->length == u->length){
+
+      // for loop for addition
+      for (int i=0; i < v->length ;++i){
+        count += vector_get(v, i) * vector_get(u, i);
+      }
+
+    }
+    else{
+      printf("vector_dot_product: vectors are not the same length");
+    }
+  }
+  else{
+    printf("vector_dot_product: one of the input vectors is invalid");
+  }
+
+  return count;
+}
 
 
