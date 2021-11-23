@@ -86,6 +86,8 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
     
     // for loop for scalar multiplication
     // continue ... [use vector_set() here]
+    for (int i=0; i<v->length; ++i){
+        vector_set(ptr_w, i, vector_get(v,i) * num);
     }
 
   }
@@ -98,5 +100,32 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
 
 // continue ...
 // implement vector_addition and vector_dot_product
+my_vector vector_addition(my_vector* v, my_vector* u){
+    my_vector w = vector_constructor(v->length);
+    if (v->status == 0 && u->status == 0){
+        my_vector* ptr_w = &w;
+        for (int i=0; i<v->length; ++i){
+        vector_set(ptr_w,i,vector_get(v,i)+vector_get(u,i));
+        }
+    }
+    else{
+    printf("vector_addition: there is at least one invalid vector we have inputted");
+    }
 
+    return w;
+}
 
+//dot product
+double vector_dot_product(my_vector* v, my_vector* u){
+    double result = 0;
+    if (v->status == 0 && u->status == 0){
+        
+        for (int i=0; i < v -> length ;++i){
+        result = (result + vector_get(v, i) * vector_get(u, i));
+        }
+    }
+    else{
+    printf("vector_dot_product: there is at least one invalid vector we have inputted");
+    }
+    return result;
+}
