@@ -86,9 +86,11 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
     
     // for loop for scalar multiplication
     // continue ... [use vector_set() here]
+    for (int i = 0; i < v->length; i++){
+      vector_set(ptr_w, i, num*(v->v[i]));
     }
-
   }
+
   else{
     printf("vector_scalar_multiplication: this is an invalid vector we have inputted");
   }
@@ -96,7 +98,51 @@ my_vector vector_scalar_multiplication(my_vector* v, double num){
   return w;
 }
 
-// continue ...
-// implement vector_addition and vector_dot_product
+// vector addition
+my_vector vector_addition(my_vector* v, my_vector* u){
+  // initialize a new vector w
+  my_vector w = vector_constructor(v->length);
+  my_vector* ptr_w = &w;
+  // check that vectors are usable
+  if ((v->status == 0) && (u->status == 0)){
+    // check if vector lengths are the same
+    if (v->length != u->length){
+      printf("vector_addition: vectors must be the same length");
+    }
+    else{
+      //set entries in vector w to sum of v and u
+      for (int i = 0; i < v->length; i++){
+        vector_set(ptr_w, i, (v->v[i]) + (u->v[i]));
+      }
+    }
+  }
+  else{
+    printf("vector_addition: invalid input vector");
+  }
+  return w;
+}
 
+// vector dot product
+double vector_dot_product(my_vector* v, my_vector* u){
+  double dotprod = 0; 
+  // check that vectors are usable
+  if ((v->status == 0) && (u->status == 0)){
+    // ensure vector lengths are the same
+    if (v->length != u->length){
+      printf("vector_addition: vectors must be the same length");
+    }
+    else{
+      // add product of corresponding entries to dotproduct sum
+      for (int i = 0; i < v->length; i++){
+        dotprod = dotprod + (v->v[i])*(u->v[i]);
+      }
+    }
+  }
 
+  else{
+    printf("vector_dot_product: invalid input vector");
+  }
+
+  return dotprod;
+  
+}
